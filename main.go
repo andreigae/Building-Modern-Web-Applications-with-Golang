@@ -5,9 +5,20 @@ import (
 	"log"
 )
 
-func main() {
-	var myVar helpers.SomeType
-	myVar.TypeName = "Some name"
+const numPool = 1000
 
-	log.Println(myVar.TypeName)
+func calculateValue(intChan chan int) {
+	randomNumber := helpers.RandomNumber(numPool)
+	intChan <- randomNumber
+}
+
+
+func main() {
+	intChan := make(chan int)
+	defer close(intChan)
+
+	go calculateValue(intChan)
+
+	num := <-intChan
+	log.Println(num)
 }
