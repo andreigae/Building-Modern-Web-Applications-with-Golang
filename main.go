@@ -1,48 +1,58 @@
 package main
 
-import (
-	"log"
-	"sort"
-)
-
-type User struct {
-	FirstName string
-	LastName  string
-}
+import "log"
 
 func main() {
-	// maps
-	myMap := make(map[string]User)
+	// the if statement
+	var isTrue bool
 
-	me := User{
-		FirstName: "Trevor",
-		LastName:  "Sawler",
+	isTrue = false
+
+	if isTrue == true {
+		log.Println("isTrue is", isTrue)
+	} else {
+		log.Println("isTrue is", isTrue)
 	}
 
-	myMap["me"] = me
+	cat := "cat2"
 
-	log.Println(myMap["me"].FirstName)
+	if cat == "cat" {
+		log.Println("Cat is cat")
+	} else {
+		log.Println("Cat is not cat")
+	}
 
-	// slices
-	var mySlice []int
+	myNum := 100
+	isTrue = false
 
-	mySlice = append(mySlice, 2)
-	mySlice = append(mySlice, 1)
-	mySlice = append(mySlice, 3)
+	if myNum > 99 && !isTrue {
+		log.Println("myNum is greater than 99 and isTrue is set to true")
+	} else if myNum < 100 && isTrue {
+		// do something
+	} else if myNum == 101 || isTrue {
+		// do something
+	} else if myNum > 1000 && isTrue {
+		// do something
+	}
 
-	sort.Ints(mySlice)
+	// the switch statement
 
-	log.Println(mySlice)
+	myVar := "cat"
 
-	// shorthand for slices
+	switch myVar {
+	case "cat":
+		log.Println("myVar is set to cat")
 
-	numbers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	log.Println(numbers)
+	case "dog":
+		log.Println("myVar is set to dog")
 
-	// print first two elements of slice, starting at first position
-	log.Println(numbers[0:2])
+	case "horse":
+		log.Println("myVar is set to horse")
 
-	// create a slice of strings
-	names := []string{"one", "seven", "fish", "cat"}
-	log.Println(names)
+	case "fish":
+		log.Println("myVar is set to fish")
+
+	default:
+		log.Println("myVar is something else")
+	}
 }
