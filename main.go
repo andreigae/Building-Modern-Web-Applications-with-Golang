@@ -1,36 +1,23 @@
 package main
 
-import "fmt"
+import "log"
 
 func main() {
-	fmt.Println("Hello, world.")
+	var myString string
+	myString = "Green"
 
-	var whatToSay string
-	var i int
+	log.Println("myString is set to", myString)
+	// se pide a la funcion changeUsingPointer que cambie el valor de myString
+	// pasandole la direccion de memoria de myString (un puntero)
+	changeUsingPointer(&myString)
 
-	whatToSay = "Goodbye, cruel world"
-	fmt.Println(whatToSay)
-
-	i = 7
-
-	fmt.Println("i is set to", i)
-
-	// Guardar LOS RESULTADOS de la función en variables (whatWasSaid, theOtherThingThatWasSaid)
-	// GO permite retornar multiples valores
-	// En este caso, la función retorna dos strings
-	// Lo que hace esta linea realmente es, ejecutar la funcion saySometing()
-	// y sea lo que sea que devuelve esa función, lo guarda en las variables
-
-	// PD: La funcion esta tipificada para retornar dos strings por lo que
-	// no se puede guardar en variables otro tipo de informacion, ya que de por si
-	// la funcion esta obligada a devolver 2 strings y ante cualqueir otro error
-	// no copila directamente el programa
-
-	whatWasSaid, theOtherThingThatWasSaid := saySomething()
-
-	fmt.Println("The function returned", whatWasSaid, theOtherThingThatWasSaid)
+	// Despues de llamar a la funcion, myString deberia ser Red
+	log.Println("after func call myString is set to", myString)
 }
 
-func saySomething() (string, string) {
-	return "something", "else"
+// Esta funcion recibe un puntero a un string y lo cambia de Green a Red
+func changeUsingPointer(s *string) {
+	log.Println("s is set to", s)
+	newValue := "Red"
+	*s = newValue
 }
