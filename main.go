@@ -3,63 +3,80 @@ package main
 import "log"
 
 func main() {
-	// the if statement
-	var isTrue bool
 
-	// declarar una varialbe y asignarle el valor de false
-	isTrue = false
+	// En go para hacer iteraciones solo se usa el "for"
+	// Para hacer un for clasico se usa la siguiente sintaxis
 
-	// Si is true es igual a true
-	if isTrue == true {
-		// Imprimir en consola el valor de isTrue
-		log.Println("isTrue is", isTrue)
-	} else {
-		// Si no es igual a true, imprimir en consola el valor de isTrue
-		log.Println("isTrue is", isTrue)
+	for i := 0; i < 10; i++ {
+		log.Println(i)
 	}
 
-	// Esta forma de declarar una variable y asignarle un valor es mas comun
-	// (Se declara y se agigna el valor en la misma linea)
+	// Tambien podrias declarar primero la variable luego solo usar el for
+	/*
+		*
+		var i2 int
+		for i2 = 0; i2 < 10; i2++ {
+			log.Println(i2)
+		}
+		*
+	*/
 
-	cat := "cat"
+	animales := []string{"Perro", "Gato", "Conejo", "Pez", "Tortuga"}
 
-	if cat == "cat" {
-		log.Println("Cat is cat")
-	} else {
-		log.Println("Cat is not cat")
+	// Iterar sobre un slice
+	// i2 es el indice del elemento, animal es el valor de cada uno de los elementos
+	// esta variable se declara y se asigna automaticamente por cada iteracion
+	// Por eso se declara con :=
+	for i2, animal := range animales {
+		log.Println(i2, animal)
 	}
 
-	myNum := 100
-	isTrue = false
-
-	if myNum > 99 && !isTrue {
-		log.Println("myNum is greater than 99 and isTrue is set to true")
-	} else if myNum < 100 && isTrue {
-		// do something
-	} else if myNum == 101 || isTrue {
-		// do something
-	} else if myNum > 1000 && isTrue {
-		// do something
+	// Si no quiero el indice puedo usar el guion bajo _ para esa variable
+	// NO SE PUEDE OMITIR LA VARIABLE DEL INDICE SIN MAS,
+	// Ya que en vez de devolver el valor del ememento, devolveria el indice
+	// Pensando que el valor no se esta usando
+	for _, animal := range animales {
+		log.Println(animal)
 	}
 
-	// the switch statement
+	// Iterar sobre un map
+	abuelos := make(map[string]string)
+	abuelos["abuelaName"] = "Mary"
+	abuelos["abueloName"] = "John"
 
-	myVar := "cat"
+	for id, value := range abuelos {
+		log.Println(id, ":", value)
+	}
 
-	switch myVar {
-	case "cat":
-		log.Println("myVar is set to cat")
+	// Iterar sobre un string
+	var str string = "Hola Mundo"
 
-	case "dog":
-		log.Println("myVar is set to dog")
+	for i, c := range str {
+		log.Println(i, ":", string(c))
+	}
+	// Se usa el string(c) para convertir el caracter a string y poder imprimirlo
+	// ya que el caracter es un tipo de dato int32, y se trabaja con la tabla ASCII
 
-	case "horse":
-		log.Println("myVar is set to horse")
+	// Crear un tipo de dato personalizado "User"
+	type User struct {
+		FirstName string
+		LastName  string
+		Email     string
+		Age       int
+	}
 
-	case "fish":
-		log.Println("myVar is set to fish")
+	// Crear un slice de tipo "User" (Array Dinamico)
+	var users []User
 
-	default:
-		log.Println("myVar is something else")
+	// Agregarle 4 elementos al slice
+	users = append(users, User{"John", "Smith", "john@smith.com", 30})
+	users = append(users, User{"Mary", "Jones", "mary@jones.com", 20})
+	users = append(users, User{"Sally", "Brown", "sally@smith.com", 45})
+	users = append(users, User{"Alex", "Anderson", "alex@smith.com", 17})
+
+	// Iterar sobre el slice
+	for _, user := range users {
+		// Imprimir los datos de cada elemento del slice
+		log.Println(user.FirstName, user.LastName, user.Email, user.Age)
 	}
 }
