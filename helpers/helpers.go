@@ -1,6 +1,12 @@
 package helpers
 
-type User struct {
-	FirstName string
-	LastName  string
+import (
+	"math/rand"
+	"time"
+)
+
+func RandomNumber(n int) int {
+	rand.Seed(time.Now().UnixNano())
+	value := rand.Intn(n)
+	return value
 }
