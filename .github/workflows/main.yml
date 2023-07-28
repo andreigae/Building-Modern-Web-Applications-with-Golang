@@ -3,7 +3,7 @@ name: Tailscale Docker
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -12,9 +12,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Set up Docker
-      uses: docker/setup-docker@v1
 
     - name: Run Tailscale container
       run: docker run -d --privileged --name tailscale-container tailscale/tailscale
