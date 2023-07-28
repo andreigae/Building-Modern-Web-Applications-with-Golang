@@ -1,0 +1,26 @@
+name: Tailscale Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Docker
+      uses: docker/setup-docker@v1
+
+    - name: Run Tailscale container
+      run: docker run -d --privileged --name tailscale-container tailscale/tailscale
+
+    - name: Connect to Tailscale network
+      run: docker exec tailscale-container tailscale up
+
+    - name: Wait for Tailscale connection
+      run: sleep 10 && docker exec tailscale-container tailscale status
